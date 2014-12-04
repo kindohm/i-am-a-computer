@@ -1,0 +1,41 @@
+cps 1
+
+d1 $ retrig $
+whenmod 32 24 (slow 2)
+$ whenmod 5 4 ((|+| speed "0.9 0.9 -0.9"))
+$ whenmod 8 6 (trunc 0.25)
+$ whenmod 11 10 (jux (iter 4))
+$ whenmod 8 4 (iter 4)
+$ within (0.25, 0.75) (every 3 (slow 2 . rev . stut 12 0.25 0.25)) 
+$ stack [ 
+whenmod 7 6 ((|+| speed "-1") . (|+| begin "0.25")) 
+$ whenmod 6 5 (|+| speed "0.8") 
+$ whenmod 5 4 (|+| speed "0.9") 
+$ slow 2 
+$ degradeBy 0.5 
+$ whenmod 16 12 (slowspread (striate) [16, 32, 64]) $ sound "aqua*8" 
+	|+| cut "1" 
+	|+| gain "0.85", 
+slowspread (chop) [512, 128, 256] $ whenmod 10 6 (slow 2) $ whenmod 5 3 (slow 2) $ slow 2 $ 
+	sound (samples "~ ~ keys2*4 ~ [~ keys2*2] ~ keys2*4 ~" (slow 0.8 $ run 20)) 
+		|+| delay "0.3" |+| cutoff (scale 0.01 0.1 $ slow 2.1 sine1) 
+		|+| resonance "0.1",
+whenmod 7 6 (slow 1.5) 
+$ slow 4 
+$ sound (samples "flkick*8 ~ ~ ktite*6 ~ [~ ktite*4] ~ ~" (run 44)) 
+	|+| gain "0.8" 
+	|+| end "0.25", 
+slow 4 $ sound "~ ~ [cp, cp:4] ~ ~ ~ [cp, cp:5]*4 ~" 
+	|+| gain "1 1 1 1 1 1 [1 0.9 0.8 0.7] 1" 
+	|+| speed "2" 
+	|+| end "0.1" 
+	|+| cutoff "0.07" 
+	|+| resonance "0.1",
+slow 4 
+$ whenmod 8 6 (slowspread (chop) [64, 256, 512]) $ 
+sound (samples "~ ~ [~ ~] ~ ~ ~ ~ [[[hh ~] [~ hh] ~ [hh ~]] ~]/2]" "14") 
+	|+| gain "0.8" 
+	|+| delay "0.2" 
+	|+| end "0.1"] 
+|+| delaytime "0.65" |+| delayfeedback "0.5"
+

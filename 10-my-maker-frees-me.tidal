@@ -1,0 +1,43 @@
+bps (200/120)
+
+# intro...
+
+d1 $ whenmod 16 12 (iter 4) $ slowspread ($) [
+	trunc 0.25, 
+	trunc 0.25, 
+	id, 
+	rev, 
+	(|+| accelerate "0.5 -0.5"), 
+	jux (iter 8), 
+	(|+| speed "0.75 -1 1.2 -0.9")] $ 
+every 3 (0.25 <~) $ every 4 (0.25 <~) $ 
+stack [ 
+slowspread (striate) [256, 8, 64, 16, 32, 128] $ 
+	whenmod 7 5 (density 2) $ sound "laz*8?" 
+		|+| speed "[1 1.2 0.8 1 0.5 1.5]/5" 
+		|+| gain "0.9" ]
+
+# main...
+
+d1 $ whenmod 16 12 (iter 4) $ slowspread ($) [
+	trunc 0.25,
+	 trunc 0.25, 
+	 id, 
+	 rev, 
+	 (|+| accelerate "0.5 -0.5"), 
+	 jux (iter 8), 
+	 (|+| speed "0.75 -1 1.2 -0.9")] $
+every 3 (0.25 <~) $ every 4 (0.25 <~) $ 
+stack [ 
+whenmod 24 16 (const $ sound "{hh:14*2 hh:14*2 ~ ~ hh:14*2}%4" ) $ 
+	sound "{[feel peri]*2 hh:25*6 [hh:14*4] hh:24*6 [feel k]*2 [feel k]*2}%4", 
+whenmod 32 24 (const $ slow 2 $ sound "~ stite:8" 
+	|+| shape "0.2") $ sound "~ s" 
+		|+| shape "0.3", 
+sound "[~ heem/2] ~ ~ ~" 
+	|+| speed "0.75", 
+whenmod 30 24 ((|+| cutoff "0.01") . (|+| resonance "0.01")) $ 
+	slowspread (striate) [256, 8, 64, 16, 32, 128] $ 
+	whenmod 7 5 (density 2) $ sound "laz*8?" 
+		|+| speed "[1 1.2 0.8 1 0.5 1.5]/5" 
+		|+| gain "0.9" ]

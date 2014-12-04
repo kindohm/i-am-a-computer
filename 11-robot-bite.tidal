@@ -1,0 +1,24 @@
+bps (100/120)
+
+# This track was 100% live-coded, so the code here is kind of meaningless, 
+# as it says nothing about the performance; including it for completeness.
+
+d1 $ stack [ 
+(slow 2 $ striate' 64 0.04 $ sound "frolic") 
+	|+| speed "1" 
+	|+| gain "0.9" 
+	|+| cutoff "0.3" 
+	|+| resonance "0.01", 
+sound (samples "k*8 stite:8 perc*4 stite:8" (run 33)) 
+	|+| speed "1", 
+slow 2 $ sound (samples "[peri peri peri peri] [ul ul peri ul] [peri peri ul ul] 
+	[ul peri ul peri] [ul ul ul peri] [peri peri peri peri] [perc peri perc peri] ~" 
+	(run 62)) 
+		|+| speed "~",  
+slow 2 $ sound "hawk*2 ~ ~ ~ ~ ~ ~ ~" 
+	|+| speed "~" 
+	|+| cut "1", 
+slow 2 $ sound "~ ~ ~ ~ ~ ~ ~ [~ [b sub]/2 ~ ~]" 
+	|+| speed "~", sound "[~ s:7]*2" 
+	|+| speed "~" ] 
+|+| cutoff (retrig $ slow 32 $ envL) |+| resonance "0.001"

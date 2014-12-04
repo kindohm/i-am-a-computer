@@ -1,0 +1,21 @@
+bps (170/120)
+
+d1 $ whenmod 24 16 (whenmod 6 4 (trunc 0.25) . every 4 (0.25 <~) . every 3 (0.25 <~) . iter 4) $ 
+stack [
+whenmod 36 28 (const $ sound "~") $ whenmod 16 8 (degradeBy 0.5) $ 
+	slow 8 $ spread' (striate' 128) (slow 2.1 $ scale 0.003 0.01 sine1) $ 
+	sound "insect" |+| speed (whenmod 24 16 ((*0.5) <$>) "1") 
+		|+| gain "0.9", 
+whenmod 24 18 (const $ sound "~") $ sound (samples "k*16?" (run 99)) 
+	|+| gain "0.8", 
+whenmod 22 16 (const $ sound "~") $ whenmod 8 5 (density 2) $ sound "~ s:1" 
+	|+| speed "1", 
+whenmod 30 20 (const $ sound "~") $ slow 2 $ whenmod 10 8 (|+| speed "-1") $ 
+	(sound "~ ~ b:22 ~ ~ [~ b:37] ~ ~") 
+		|+| shape "0.3" 
+		|+| gain "1" 
+		|+| cut "10", 
+sound (samples "{~ ~ ~ ~, hh*4 hh*4 hh*4 ~ ~}" (run 87)) 
+	|+| gain "0.8"
+] |+| shape "0.4"
+

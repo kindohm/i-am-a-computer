@@ -1,0 +1,42 @@
+bps (150/120)
+
+d1 $ retrig $ whenmod 8 6 (trunc 0.25) $ every 3 (0.25 <~) $ every 4 (0.25 <~) $ 
+stack [ 
+slow 4 $ sound "vocad" 
+	|+| speed (whenmod 14 10 ((*1) <$>) "0.5") 
+	|+| gain "0.85" 
+	|+| cut "1" 
+	|+| delay "0.2", 
+whenmod 32 26 (const $ sound "~") $ 
+	(whenmod 7 5 (const $ slowspread (striate) [64, 128, 512, 1024, 300] $ 
+		(|+| delay "0.2") $ sound "~ bor") $ sound "~ bor" |+| cut "10") 
+	|+| gain "0.9" |+| speed (whenmod 14 10 ((*0.9) <$>) "1"), 
+whenmod 16 8 (const $ degradeBy 0.3 $ slowspread (within (0.25, 0.75)) [
+	rev . slow 2, (0.25 <~), trunc 0.25, (|+| speed "1.2 0.8 -1"), chop 16, 
+	chop 8, (|+| accelerate "1 -1"), slow 2, stut 8 0.1 0.1, chop 32] 
+	$ density 2 $ sound (samples "[tite stite peri kit3 tite kit3 tite ul]" 
+		(slow 0.8 $ run 23)) 
+		|+| cutoff "0.2" 
+		|+| resonance "0.01" 
+		|+| gain "0.8" 
+		|+| end (scale 0.05 0.5 $ slow 2.91 $ sine1) 
+		|+| speed "[2 3 1.5 2.5]/5") $ 
+	whenmod 3 2 (rev) $ every 5 (slow 0.75) $ 
+	whenmod 10 6 (slowspread (chop) [128, 64, 16, 32, 256, 512]) $ 
+	slow 2 $ degradeBy 0.4 $ sound (samples "keys2*8" (run 41)) 
+		|+| speed (whenmod 14 10 ((*0.9) <$>) "[1 1.5 1 2 0.5 0.75]/4") 
+		|+| delay "0.4" 
+		|+| gain "0.9" 
+		|+| end (scale 0.07 0.25 $ slow 2.71 sine1) ] 
+|+| delaytime "0.7" |+| delayfeedback "0.4"
+
+# outro...
+
+d1 $ whenmod 8 6 (trunc 0.25) $ every 3 (0.25 <~) $ every 4 (0.25 <~) $ slow 4 $ 
+	sound "vocad" 
+		|+| speed (whenmod 14 10 ((*1) <$>) "0.5") 
+		|+| gain "0.85" 
+		|+| cut "1" 
+		|+| delay "0.2"
+		|+| delaytime "0.7" 
+		|+| delayfeedback "0.4"

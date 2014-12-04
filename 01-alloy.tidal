@@ -1,0 +1,7 @@
+bps (210/120)
+
+d1 $ slow 4 $ (slowspread (striate) [32, 16] 
+$ sound "[heaven heaven:1 heaven:2 heaven:3]/4") 
+|+| speed "[[1 0.5]/2, [~ 1.5 ~ 2]/3]"
+|+| delay "0.5"
+|+| delaytime "0.4" |+| delayfeedback "0.5"

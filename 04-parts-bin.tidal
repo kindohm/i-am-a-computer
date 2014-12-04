@@ -1,0 +1,47 @@
+bps (175/120)
+
+# intro
+
+d1 $ slowspread ($) [
+	iter 4, 
+	iter 4, 
+	(|+| speed "0.7") . slow 2 . (|+| delay "0.6"), 
+	id, 
+	trunc 0.25, 
+	within (0, 0.5) (every 2 (rev . slow 2 . stut 6 0.25 0.25)), 
+	id, (|+| speed "1.2 0.8 -0.8")] $ 
+whenmod 6 3 (density 2) $ every 3 (0.25 <~) $ 
+stack [ 
+slow 8 $ (striate 32 $ sound "ping") 
+	|+| speed (whenmod 32 24 ((*1.25) <$>) "[[1 1 1 0.5]/4, [~ ~ 1.5 ~ ~ 2]/8]") 
+] 
+	|+| delayfeedback "0.5" 
+	|+| delaytime "0.35" 
+	|+| shape "0.2"
+
+# main
+
+d1 $ slowspread ($) [
+	iter 4, 
+	iter 4, 
+	(|+| speed "0.7") . slow 2 . (|+| delay "0.6"), 
+	id, 
+	trunc 0.25, 
+	within (0, 0.5) (every 2 (rev . slow 2 . stut 6 0.25 0.25)), 
+	(|+| speed "1.2 0.8 -0.8")] 
+$ whenmod 7 3 (density 2) $ every 3 (0.25 <~) $ whenmod 17 13 (every 4 (0.25 <~))
+$ stack [ 
+slow 8 $ (striate 32 $ sound "ping") 
+	|+| speed (whenmod 32 24 ((*1.25) <$>) "[[1 1 1 0.5]/4, [~ ~ 1.5 ~ ~ 2]/8]"), 
+whenmod 7 5 (within (0, 0.5) (rev . stut 4 0.25 0.25 . slow 2)) $ 
+	whenmod 16 12 (const $ sound "hh:8*8" |+| gain "0.9") $ 
+	sound (samples "hh peri untuned kit1 dup xh hh tite" (run 63)), 
+whenmod 16 12 (const $ slow 2 $ sound "kh:23 ~ ~ kh:23 ~ ~ ~ ~" 
+	|+| gain "1.1") $ 
+	stack [sound (samples "kh:23 [~ kh:23]" "17") 
+		|+| cut "1" 
+		|+| gain "1.1", sound "~ s:22" ] 
+] 
+	|+| delayfeedback "0.5" 
+	|+| delaytime "0.35" 
+	|+| shape "0.2"

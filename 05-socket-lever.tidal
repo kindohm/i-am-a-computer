@@ -1,0 +1,41 @@
+bps (175/120)
+
+# intro 1
+
+d1 $ stack [ 
+slow 2 $ sound (samples "[kh hh]*4 [sna:0 hh hh sna:1] [~ hh*6 ~ hh] [sna:0 kh hh*2 sna:1]" "10"), 
+slow 2 $ sound (samples "[at b:9]/2 ~ ~ ~ ~ ~ ~ ~" (run 44))
+	|+| speed "[0.8]/3"]
+
+# intro coda
+
+d1 $ stack [ 
+slow 2 $ sound (samples "[kh hh]*4 [sna:0 hh hh sna:1] [~ hh*6 ~ ~] ~" "10"), 
+slow 2 $ sound (samples "[at b:9]/2 ~ ~ ~ ~ ~ b:9 ~" (run 44))
+    |+| speed "[0.8]/3"]
+
+
+#main
+
+d1 $ stack [ 
+slow 2 $ sound (samples "[kh hh]*4 [sna:0 hh hh sna:1] [~ hh*6 ~ ~] [sna:0 kh hh*2 sna:1]" "10"), 
+slow 2 $ sound (samples "[at:0 b:9]/2 doru*2 c64*2 doru*2 [[peach c64:5]/2 c64] [c64]*2 [clak]*4 doru*2" 
+	(every 2 (0.25 <~) $ run 44)) |+| speed "[0.8]/3", 
+slow 2 $ sound (samples "~ drop [~ [drop sub]/2] ~" (slow 0.8 $ run 29)) |+| cut "2"]
+
+
+# outro 1
+
+d1 $ stack [ 
+slow 2 $ sound (samples "[kh hh]*4 [sna:0 hh hh sna:1] [~ hh*6 ~ hh] [sna:0 kh hh*2 sna:1]" "10"), 
+slow 2 $ sound (samples "[at b:9]/2 ~ ~ ~ ~ ~ ~ ~" (run 44))
+	|+| speed "[0.8]/3", 
+slow 2 $ sound (samples "~ drop [~ [drop sub]/2] ~" (slow 0.8 $ run 29)) |+| cut "2"]
+
+# outro coda
+
+d1 $ stack [ 
+slow 2 $ sound (samples "[kh hh]*4 [sna:0 hh hh sna:1] [~ hh*6 ~ hh] ~" "10"), 
+slow 2 $ sound (samples "[at b:9]/2 ~ ~ ~ ~ ~ b:9 ~" (run 44))
+    |+| speed "[0.8]/3", 
+slow 2 $ sound (samples "~ drop [~ [drop sub]/2] ~" (slow 0.8 $ run 29)) |+| cut "2"]

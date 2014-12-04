@@ -1,0 +1,25 @@
+bps (135/120)
+
+d1 $ retrig $ whenmod 40 32 ((|+| speed "0.75") . slow 1.5) $ 
+every 11 ((|+| speed "1.5 -1") . echo 2) $ 
+every 9 (|+| speed "0.8 0.7 1.2") $ 
+whenmod 12 8 (iter 4) $ whenmod 8 6 (trunc 0.25) $ 
+every 4 (0.25 <~) $ every 3 (0.25 <~) $ 
+every 8 (every 3 (rev) . trunc 0.5 . striate' 64 (1/4) . slow 4 . 
+	(|+| cutoff (scale 0.02 0.3 $ slow 0.718 sine1)) . (|+| resonance "0.5")) $
+stack [ 
+whenmod 20 16 (const $ sound "~") $ degradeBy 0.6 $ sound "scream2*8" 
+	|+| end "0.5" 
+	|+| cut "1" 
+	|+| speed (every 3 ((*0.9) <$>) "1"), 
+whenmod 10 7 (const $ stack [sound "kv:1*8?", 
+sound "blue:1*8?" 
+	|+| end "0.3" 
+	|+| cut "2" 
+	|+| shape "0.6" 
+	|+| begin "0.1"]) $ 
+whenmod 32 24 (const $ sound "~") $ sound "~ sv [~ sv] cp", 
+sound "kv:2*4? ~ [~ kv:5 ~ ~] [~ kv:4*2?]", 
+whenmod 11 7 (const $ every 3 (within (0, 0.5) (slow 2 . rev . stut 8 0.25 0.25)) $ 
+sound "ride:2*4" |+| cut "3" |+| gain "0.8" |+| end "0.25") $ 
+sound (samples "~ hh*8 ride:2 ~" (run 55)) |+| gain "0.8" |+| end "0.25" ]
